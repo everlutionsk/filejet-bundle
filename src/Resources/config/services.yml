@@ -1,0 +1,26 @@
+services:
+    _defaults:
+        autowire: true
+        autoconfigure: true
+
+    Everlution\FileJetBundle\Storage\StorageContainer:
+        factory: [Everlution\FileJetBundle\Storage\ContainerFactory, createContainer]
+        arguments:
+            - '%everlution.file.storages_config%'
+
+    Everlution\FileJet\Management\HttpClientImpl:
+    Everlution\FileJet\Management\HttpClient: '@Everlution\FileJet\Management\HttpClientImpl'
+    Everlution\FileJet\Management\DeletionImpl: ~
+    Everlution\FileJet\Management\Deletion: '@Everlution\FileJet\Management\DeletionImpl'
+    Everlution\FileJet\Management\UploadImpl: ~
+    Everlution\FileJet\Management\Upload: '@Everlution\FileJet\Management\UploadImpl'
+
+    Everlution\FileJetBundle\Service\StorageManagerImpl: ~
+    Everlution\FileJetBundle\Service\StorageManager: '@Everlution\FileJetBundle\Service\StorageManagerImpl'
+
+    Everlution\FileJet\Url\UrlProviderImpl: ~
+    Everlution\FileJet\Url\UrlProvider: '@Everlution\FileJet\Url\UrlProviderImpl'
+    Everlution\FileJetBundle\Service\UrlProvider: ~
+
+    Everlution\FileJetBundle\Twig\UrlProviderExtension:
+        tags: ['twig.extension']
